@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 500px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rock, Paper, Scissors</h1>
+        <p>Choose your move:</p>
+        <div class="choices">
+            <button onclick="playGame('rock')">Rock</button>
+            <button onclick="playGame('paper')">Paper</button>
+            <button onclick="playGame('scissors')">Scissors</button>
+        </div>
+        <div class="result" id="result">Make your choice!</div>
+    </div>
+
+    <script>
+        function playGame(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            let resultMessage = `You chose ${playerChoice}. Computer chose ${computerChoice}. `;
+
+            if (playerChoice === computerChoice) {
+                resultMessage += "It's a tie!";
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                resultMessage += "You win!";
+            } else {
+                resultMessage += "You lose!";
+            }
+
+            document.getElementById('result').textContent = resultMessage;
+        }
+    </script>
+</body>
+</html>
